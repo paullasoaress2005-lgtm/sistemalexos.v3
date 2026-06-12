@@ -255,7 +255,8 @@ h2 {
 .module-summary,
 .panel,
 .metric,
-.search-box {
+.search-box,
+.shortcuts-panel {
   border: 1px solid rgba(43, 66, 94, 0.70);
   border-radius: 16px;
   background: rgba(15, 34, 57, 0.70);
@@ -307,6 +308,77 @@ h2 {
   margin-top: 12px;
   color: white;
   font-size: 25px;
+}
+
+.shortcuts-panel {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 14px;
+  padding: 12px;
+}
+
+.shortcuts-heading {
+  display: grid;
+  align-content: center;
+  border-right: 1px solid rgba(43, 66, 94, 0.58);
+  padding-right: 12px;
+}
+
+.shortcuts-heading strong {
+  display: block;
+  margin-top: 6px;
+  color: white;
+  font-size: 14px;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.shortcut {
+  min-height: 58px;
+  border: 1px solid rgba(43, 66, 94, 0.68);
+  border-radius: 12px;
+  background: rgba(9, 24, 43, 0.52);
+  padding: 10px;
+  text-align: left;
+  transition: 180ms ease;
+}
+
+.shortcut:hover {
+  border-color: rgba(202, 165, 91, 0.48);
+  background: rgba(19, 41, 66, 0.70);
+}
+
+.shortcut span {
+  display: block;
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.shortcut small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.shortcut.primary {
+  border-color: rgba(202, 165, 91, 0.48);
+  background: rgba(202, 165, 91, 0.08);
+}
+
+.shortcut.attention {
+  border-color: rgba(237, 208, 145, 0.28);
+}
+
+.shortcut.risk {
+  border-color: rgba(211, 102, 111, 0.35);
 }
 
 .control-row {
@@ -549,8 +621,20 @@ h2 {
   }
 
   .command-strip,
+  .shortcuts-panel,
   .content-grid {
     grid-template-columns: 1fr;
+  }
+
+  .shortcuts-heading {
+    border-right: 0;
+    border-bottom: 1px solid rgba(43, 66, 94, 0.58);
+    padding-right: 0;
+    padding-bottom: 10px;
+  }
+
+  .shortcut-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .detail-panel {
@@ -578,6 +662,10 @@ h2 {
   }
 
   .record-card {
+    grid-template-columns: 1fr;
+  }
+
+  .shortcut-grid {
     grid-template-columns: 1fr;
   }
 }

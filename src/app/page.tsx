@@ -4,6 +4,16 @@ import { useMemo, useState } from "react";
 import { modules, operationalQueue, records, toneLabel, type ModuleId, type WorkspaceRecord } from "@/lib/data";
 
 const quickActions = ["Novo dossiê", "Novo cliente", "Novo processo", "Nova tarefa"];
+const dashboardShortcuts: Array<{ label: string; meta: string; module: ModuleId; recordId?: string; tone: "primary" | "neutral" | "attention" | "risk" }> = [
+  { label: "Cadastrar cliente", meta: "novo relacionamento", module: "clientes", recordId: "cliente-apice", tone: "primary" },
+  { label: "Novo processo", meta: "abrir caso", module: "processos", recordId: "processo-marina", tone: "primary" },
+  { label: "Nova tarefa", meta: "providência rápida", module: "tarefas", recordId: "tarefa-replica", tone: "neutral" },
+  { label: "Lançar prazo", meta: "agenda/processo", module: "agenda", recordId: "agenda-audiencia", tone: "attention" },
+  { label: "Cobrança interna", meta: "financeiro", module: "financeiro", recordId: "financeiro-vencido", tone: "risk" },
+  { label: "Central LEX.OS", meta: "prompts e fluxos", module: "central", recordId: "central-camaleao", tone: "neutral" },
+  { label: "Relatório dos sócios", meta: "leitura executiva", module: "relatorios", tone: "neutral" },
+  { label: "Fila crítica", meta: "atenções e riscos", module: "inicio", recordId: operationalQueue[0]?.id, tone: "attention" }
+];
 
 export default function HomePage() {
   const [activeModule, setActiveModule] = useState<ModuleId>("inicio");
@@ -20,6 +30,12 @@ export default function HomePage() {
     });
   }, [activeModule, query]);
 
+  function openShortcut(shortcut: (typeof dashboardShortcuts)[number]) {
+    setActiveModule(shortcut.module);
+    const target = records.find((record) => record.id === shortcut.recordId) ?? records.find((record) => record.module === shortcut.module) ?? operationalQueue[0] ?? null;
+    setSelectedRecord(target);
+  }
+
   return (
     <main className="app-shell">
       <aside className="sidebar" aria-label="Navegação principal">
@@ -35,7 +51,7 @@ export default function HomePage() {
           {modules.map((module) => (
             <button className={module.id === activeModule ? "nav-item active" : "nav-item"} key={module.id} onClick={() => setActiveModule(module.id)} type="button">
               <span>{module.shortLabel}</span>
-              <small>{module.summary}</small>
+              <small>{module.metrics[0]?.value ?? "0"} · {module.metrics[0]?.label ?? "itens"}</small>
             </button>
           ))}
         </nav>
@@ -79,6 +95,21 @@ export default function HomePage() {
               <button className={`metric ${metric.tone}`} key={metric.label} type="button">
                 <span>{metric.label}</span>
                 <strong>{metric.value}</strong>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="shortcuts-panel" aria-label="Atalhos operacionais">
+          <div className="shortcuts-heading">
+            <p className="eyebrow">Atalhos</p>
+            <strong>Comandos de rotina</strong>
+          </div>
+          <div className="shortcut-grid">
+            {dashboardShortcuts.map((shortcut) => (
+              <button className={`shortcut ${shortcut.tone}`} key={shortcut.label} onClick={() => openShortcut(shortcut)} type="button">
+                <span>{shortcut.label}</span>
+                <small>{shortcut.meta}</small>
               </button>
             ))}
           </div>
