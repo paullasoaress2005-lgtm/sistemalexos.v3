@@ -38,7 +38,7 @@ export const modules: ModuleDefinition[] = [
     id: "inicio",
     label: "Início",
     shortLabel: "Início",
-    summary: "Comando diário do escritório.",
+    summary: "Mesa diária para decidir o próximo movimento do escritório.",
     primaryAction: "Novo dossiê",
     metrics: [
       { label: "Atenções", value: "7", tone: "attention" },
@@ -50,19 +50,19 @@ export const modules: ModuleDefinition[] = [
     id: "clientes",
     label: "Clientes",
     shortLabel: "Clientes",
-    summary: "Carteira, retorno e vínculos.",
+    summary: "Carteira, histórico de contato e vínculos operacionais.",
     primaryAction: "Novo cliente",
     metrics: [
       { label: "Ativos", value: "18", tone: "success" },
       { label: "Sem retorno", value: "5", tone: "attention" },
-      { label: "Com cobrança", value: "3", tone: "risk" }
+      { label: "Cobrança", value: "3", tone: "risk" }
     ]
   },
   {
     id: "processos",
     label: "Processos",
     shortLabel: "Casos",
-    summary: "Prazos, risco e providências.",
+    summary: "Prazos, risco, responsáveis e próximas providências.",
     primaryAction: "Novo processo",
     metrics: [
       { label: "Ativos", value: "24", tone: "success" },
@@ -74,7 +74,7 @@ export const modules: ModuleDefinition[] = [
     id: "tarefas",
     label: "Tarefas",
     shortLabel: "Tarefas",
-    summary: "Fila objetiva de execução.",
+    summary: "Fila objetiva de execução e revisão humana.",
     primaryAction: "Nova tarefa",
     metrics: [
       { label: "Abertas", value: "31", tone: "info" },
@@ -86,7 +86,7 @@ export const modules: ModuleDefinition[] = [
     id: "agenda",
     label: "Agenda",
     shortLabel: "Agenda",
-    summary: "Prazos e compromissos.",
+    summary: "Prazos, audiências, reuniões e follow-ups.",
     primaryAction: "Novo evento",
     metrics: [
       { label: "Hoje", value: "3", tone: "info" },
@@ -98,7 +98,7 @@ export const modules: ModuleDefinition[] = [
     id: "financeiro",
     label: "Financeiro",
     shortLabel: "Financeiro",
-    summary: "Controle interno de caixa.",
+    summary: "Recebíveis, vencidos e leitura de caixa.",
     primaryAction: "Novo registro",
     metrics: [
       { label: "Aberto", value: "R$ 44k", tone: "info" },
@@ -110,7 +110,7 @@ export const modules: ModuleDefinition[] = [
     id: "central",
     label: "Central LEX.OS",
     shortLabel: "Central",
-    summary: "Prompts, fluxos e playbooks.",
+    summary: "Prompts, fluxos, playbooks e rotinas assistidas.",
     primaryAction: "Abrir central",
     metrics: [
       { label: "Prompts", value: "42", tone: "info" },
@@ -122,7 +122,7 @@ export const modules: ModuleDefinition[] = [
     id: "relatorios",
     label: "Relatórios",
     shortLabel: "Relatórios",
-    summary: "Leitura executiva do escritório.",
+    summary: "Leitura executiva para sócios e operação.",
     primaryAction: "Gerar leitura",
     metrics: [
       { label: "Semana", value: "1", tone: "success" },
@@ -143,7 +143,11 @@ export const records: WorkspaceRecord[] = [
     owner: "Dra. Helena",
     due: "08/05/2026",
     action: "Agendar retorno",
-    details: ["Pendência: aprovar minuta de aditivo.", "Último contato: 08/05/2026, 09:00.", "Vínculos: 2 processos, 3 tarefas e 1 cobrança aberta."]
+    details: [
+      "Pendência principal: aprovar minuta de aditivo.",
+      "Último contato: 08/05/2026, 09:00.",
+      "Vínculos: 2 processos, 3 tarefas e 1 cobrança aberta."
+    ]
   },
   {
     id: "processo-marina",
@@ -154,20 +158,28 @@ export const records: WorkspaceRecord[] = [
     tone: "risk",
     owner: "Dr. Rafael",
     due: "13/05/2026",
-    action: "Revisar rol de testemunhas",
-    details: ["Área: trabalhista.", "Parte contrária: ex-empregadora.", "Prazo vencido e exige validação humana."]
+    action: "Abrir processo",
+    details: [
+      "Área: trabalhista.",
+      "Parte contrária: ex-empregadora.",
+      "Próxima providência: revisar rol de testemunhas."
+    ]
   },
   {
     id: "tarefa-replica",
     module: "tarefas",
     title: "Preparar réplica",
-    subtitle: "Vinculada ao processo Marina Salles",
+    subtitle: "Processo Marina Salles",
     status: "Hoje",
     tone: "attention",
     owner: "Dr. Rafael",
     due: "Hoje, 16:00",
     action: "Abrir tarefa",
-    details: ["Tipo: peça.", "Prioridade: alta.", "Conferir documentos anexados antes de redigir."]
+    details: [
+      "Tipo: peça.",
+      "Prioridade: alta.",
+      "Conferir documentos anexados antes de redigir."
+    ]
   },
   {
     id: "agenda-audiencia",
@@ -179,7 +191,11 @@ export const records: WorkspaceRecord[] = [
     owner: "Dra. Helena",
     due: "Amanhã, 09:30",
     action: "Abrir agenda",
-    details: ["Cliente: Grupo Ápice.", "Lembrete: 1 hora antes.", "Link do ato cadastrado internamente."]
+    details: [
+      "Cliente: Grupo Ápice.",
+      "Lembrete: 1 hora antes.",
+      "Link do ato cadastrado internamente."
+    ]
   },
   {
     id: "financeiro-vencido",
@@ -192,7 +208,11 @@ export const records: WorkspaceRecord[] = [
     due: "Venc. 10/05/2026",
     value: "R$ 7.800,00",
     action: "Registrar retorno",
-    details: ["Controle interno sem emissão bancária.", "Próxima ação: cobrança consultiva.", "Vinculado ao cliente Grupo Ápice."]
+    details: [
+      "Controle interno sem emissão bancária.",
+      "Próxima ação: cobrança consultiva.",
+      "Vinculado ao cliente Grupo Ápice."
+    ]
   },
   {
     id: "central-camaleao",
@@ -203,7 +223,11 @@ export const records: WorkspaceRecord[] = [
     tone: "success",
     owner: "Central LEX.OS",
     action: "Abrir fluxo",
-    details: ["Pacote operacional em quatro etapas.", "Uso assistivo com revisão humana.", "Pode gerar tarefas e checklist de produção."]
+    details: [
+      "Pacote operacional em quatro etapas.",
+      "Uso assistivo com revisão humana.",
+      "Pode gerar tarefas e checklist de produção."
+    ]
   }
 ];
 
@@ -212,7 +236,7 @@ export const operationalQueue = records.filter((record) => ["attention", "risk"]
 export function toneLabel(tone: StatusTone) {
   return {
     neutral: "Neutro",
-    info: "Info",
+    info: "Informação",
     attention: "Atenção",
     success: "Ativo",
     risk: "Risco"

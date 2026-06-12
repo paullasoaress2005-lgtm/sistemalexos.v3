@@ -1,27 +1,37 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { modules, operationalQueue, records, toneLabel, type ModuleId, type WorkspaceRecord } from "@/lib/data";
+import { modules, operationalQueue, records, toneLabel, type ModuleId, type StatusTone, type WorkspaceRecord } from "@/lib/data";
 
-const quickActions = ["Novo dossiê", "Novo cliente", "Novo processo", "Nova tarefa"];
-const dashboardShortcuts: Array<{ label: string; meta: string; module: ModuleId; recordId?: string; tone: "primary" | "neutral" | "attention" | "risk" }> = [
-  { label: "Cadastrar cliente", meta: "novo relacionamento", module: "clientes", recordId: "cliente-apice", tone: "primary" },
-  { label: "Novo processo", meta: "abrir caso", module: "processos", recordId: "processo-marina", tone: "primary" },
-  { label: "Nova tarefa", meta: "providência rápida", module: "tarefas", recordId: "tarefa-replica", tone: "neutral" },
-  { label: "Lançar prazo", meta: "agenda/processo", module: "agenda", recordId: "agenda-audiencia", tone: "attention" },
-  { label: "Cobrança interna", meta: "financeiro", module: "financeiro", recordId: "financeiro-vencido", tone: "risk" },
-  { label: "Central LEX.OS", meta: "prompts e fluxos", module: "central", recordId: "central-camaleao", tone: "neutral" },
-  { label: "Relatório dos sócios", meta: "leitura executiva", module: "relatorios", tone: "neutral" },
-  { label: "Fila crítica", meta: "atenções e riscos", module: "inicio", recordId: operationalQueue[0]?.id, tone: "attention" }
+type Shortcut = {
+  label: string;
+  description: string;
+  module: ModuleId;
+  recordId?: string;
+  tone: StatusTone;
+};
+
+const shortcuts: Shortcut[] = [
+  { label: "Novo dossiê", description: "abrir análise", module: "processos", recordId: "processo-marina", tone: "attention" },
+  { label: "Cadastrar cliente", description: "nova relação", module: "clientes", recordId: "cliente-apice", tone: "success" },
+  { label: "Criar tarefa", description: "fila rápida", module: "tarefas", recordId: "tarefa-replica", tone: "info" },
+  { label: "Lançar prazo", description: "agenda e caso", module: "agenda", recordId: "agenda-audiencia", tone: "risk" },
+  { label: "Central LEX.OS", description: "prompts e fluxos", module: "central", recordId: "central-camaleao", tone: "neutral" },
+  { label: "Relatório", description: "leitura dos sócios", module: "relatorios", tone: "neutral" }
+];
+
+const moduleGroups: Array<{ label: string; ids: ModuleId[] }> = [
+  { label: "Operação", ids: ["inicio", "clientes", "processos", "tarefas", "agenda"] },
+  { label: "Gestão", ids: ["financeiro", "central", "relatorios"] }
 ];
 
 export default function HomePage() {
   const [activeModule, setActiveModule] = useState<ModuleId>("inicio");
-  const [selectedRecord, setSelectedRecord] = useState<WorkspaceRecord | null>(operationalQueue[0] ?? null);
+  const [selectedRecord, setSelectedRecord] = useState<WorkspaceRecord | null>(operationalQueue[0] ?? records[0] ?? null);
   const [query, setQuery] = useState("");
 
   const active = modules.find((module) => module.id === activeModule) ?? modules[0];
-  const visibleRecords = useMemo(() => {
+  const activeRecords = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     return records.filter((record) => {
       const moduleMatch = activeModule === "inicio" || record.module === activeModule;
@@ -30,163 +40,183 @@ export default function HomePage() {
     });
   }, [activeModule, query]);
 
-  function openShortcut(shortcut: (typeof dashboardShortcuts)[number]) {
-    setActiveModule(shortcut.module);
-    const target = records.find((record) => record.id === shortcut.recordId) ?? records.find((record) => record.module === shortcut.module) ?? operationalQueue[0] ?? null;
+  function openModule(moduleId: ModuleId) {
+    setActiveModule(moduleId);
+    const target = records.find((record) => record.module === moduleId) ?? (moduleId === "inicio" ? operationalQueue[0] : null) ?? selectedRecord;
     setSelectedRecord(target);
   }
 
+  function openShortcut(shortcut: Shortcut) {
+    setActiveModule(shortcut.module);
+    setSelectedRecord(records.find((record) => record.id === shortcut.recordId) ?? records.find((record) => record.module === shortcut.module) ?? selectedRecord);
+  }
+
   return (
-    <main className="app-shell">
-      <aside className="sidebar" aria-label="Navegação principal">
-        <div className="brand">
-          <div className="brand-mark">LX</div>
+    <main className="lexos-shell">
+      <aside className="sidebar premium-scrollbar" aria-label="Navegação principal">
+        <div className="brand-card">
+          <img alt="LEX.OS" src="/lexos-logo.png" />
           <div>
-            <p>LEX.OS</p>
-            <strong>Control V3</strong>
+            <span>LEX.OS</span>
+            <strong>Control</strong>
+            <small>operação jurídica</small>
           </div>
         </div>
 
-        <nav className="nav-list">
-          {modules.map((module) => (
-            <button className={module.id === activeModule ? "nav-item active" : "nav-item"} key={module.id} onClick={() => setActiveModule(module.id)} type="button">
-              <span>{module.shortLabel}</span>
-              <small>{module.metrics[0]?.value ?? "0"} · {module.metrics[0]?.label ?? "itens"}</small>
-            </button>
+        <nav className="sidebar-nav">
+          {moduleGroups.map((group) => (
+            <div className="nav-group" key={group.label}>
+              <p>{group.label}</p>
+              {group.ids.map((moduleId) => {
+                const module = modules.find((item) => item.id === moduleId);
+                if (!module) return null;
+                return (
+                  <button className={module.id === activeModule ? "nav-item active" : "nav-item"} key={module.id} onClick={() => openModule(module.id)} type="button">
+                    <span>{module.shortLabel}</span>
+                    <small>{module.metrics[0]?.value ?? "0"}</small>
+                  </button>
+                );
+              })}
+            </div>
           ))}
         </nav>
 
-        <div className="sidebar-note">
-          <span>Modo</span>
-          <strong>Demonstração local</strong>
+        <div className="unit-card">
+          <p>Unidade</p>
+          <strong>Escritório Demonstração</strong>
+          <span>Dados locais para validação visual.</span>
         </div>
       </aside>
 
       <section className="workspace">
         <header className="topbar">
-          <div>
-            <p className="eyebrow">Sistema LEX.OS V3</p>
+          <div className="topbar-copy">
+            <p className="eyebrow">Sistema LEX.OS · V3</p>
             <h1>{active.label}</h1>
+            <span>{active.summary}</span>
           </div>
-          <div className="top-actions">
-            {quickActions.map((action) => (
-              <button className={action === active.primaryAction ? "button primary" : "button secondary"} key={action} type="button">
-                {action}
-              </button>
-            ))}
+
+          <div className="topbar-actions">
+            <button className="button secondary" type="button">Alertas</button>
+            <button className="button primary" type="button">{active.primaryAction}</button>
           </div>
         </header>
 
-        <nav className="mobile-tabs" aria-label="Módulos">
+        <nav className="mobile-tabs premium-scrollbar" aria-label="Módulos">
           {modules.map((module) => (
-            <button className={module.id === activeModule ? "active" : ""} key={module.id} onClick={() => setActiveModule(module.id)} type="button">
+            <button className={module.id === activeModule ? "active" : ""} key={module.id} onClick={() => openModule(module.id)} type="button">
               {module.shortLabel}
             </button>
           ))}
         </nav>
 
-        <section className="command-strip">
-          <div className="module-summary">
-            <p className="eyebrow">Leitura rápida</p>
-            <strong>{active.summary}</strong>
-          </div>
-          <div className="metric-row">
-            {active.metrics.map((metric) => (
-              <button className={`metric ${metric.tone}`} key={metric.label} type="button">
-                <span>{metric.label}</span>
-                <strong>{metric.value}</strong>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="shortcuts-panel" aria-label="Atalhos operacionais">
-          <div className="shortcuts-heading">
-            <p className="eyebrow">Atalhos</p>
-            <strong>Comandos de rotina</strong>
-          </div>
-          <div className="shortcut-grid">
-            {dashboardShortcuts.map((shortcut) => (
-              <button className={`shortcut ${shortcut.tone}`} key={shortcut.label} onClick={() => openShortcut(shortcut)} type="button">
-                <span>{shortcut.label}</span>
-                <small>{shortcut.meta}</small>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="control-row">
-          <label className="search-box">
-            <span>Buscar</span>
-            <input onChange={(event) => setQuery(event.target.value)} placeholder="Cliente, processo, tarefa ou responsável" value={query} />
-          </label>
-          <button className="button primary" type="button">{active.primaryAction}</button>
-        </section>
-
-        <section className="content-grid">
-          <div className="panel records-panel">
-            <div className="panel-heading">
+        <section className="page-grid">
+          <div className="main-column">
+            <section className="premium-surface command-panel">
               <div>
-                <p className="eyebrow">{activeModule === "inicio" ? "Fila operacional" : active.label}</p>
-                <h2>{visibleRecords.length} registro(s)</h2>
+                <p className="eyebrow">Mesa operacional</p>
+                <h2>Atalhos e leitura rápida para rotina do escritório.</h2>
               </div>
-              <button className="button ghost" onClick={() => setActiveModule("inicio")} type="button">Ver tudo</button>
-            </div>
+              <div className="metric-grid">
+                {active.metrics.map((metric) => (
+                  <button className={`metric-card ${metric.tone}`} key={metric.label} type="button">
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                  </button>
+                ))}
+              </div>
+            </section>
 
-            <div className="record-list">
-              {visibleRecords.map((record) => (
-                <button className={selectedRecord?.id === record.id ? "record-card selected" : "record-card"} key={record.id} onClick={() => setSelectedRecord(record)} type="button">
-                  <span className={`status ${record.tone}`}>{record.status}</span>
-                  <div>
-                    <strong>{record.title}</strong>
-                    <small>{record.subtitle}</small>
-                  </div>
-                  <em>{record.due ?? record.owner}</em>
+            <section className="shortcut-grid" aria-label="Atalhos">
+              {shortcuts.map((shortcut) => (
+                <button className={`shortcut-card ${shortcut.tone}`} key={shortcut.label} onClick={() => openShortcut(shortcut)} type="button">
+                  <span>{shortcut.description}</span>
+                  <strong>{shortcut.label}</strong>
                 </button>
               ))}
-              {!visibleRecords.length ? (
-                <div className="empty-state">
-                  <strong>Nenhum registro encontrado.</strong>
-                  <span>Ajuste a busca ou troque de módulo.</span>
+            </section>
+
+            <section className="premium-surface list-panel">
+              <div className="panel-head">
+                <div>
+                  <p className="eyebrow">{activeModule === "inicio" ? "Fila executiva" : active.label}</p>
+                  <h2>{activeRecords.length} registro(s)</h2>
                 </div>
-              ) : null}
-            </div>
+                <label className="search-field">
+                  <span>Buscar</span>
+                  <input onChange={(event) => setQuery(event.target.value)} placeholder="cliente, processo ou responsável" value={query} />
+                </label>
+              </div>
+
+              <div className="record-table">
+                {activeRecords.map((record) => (
+                  <button className={selectedRecord?.id === record.id ? "record-row selected" : "record-row"} key={record.id} onClick={() => setSelectedRecord(record)} type="button">
+                    <div>
+                      <span className="record-module">{moduleLabel(record.module)}</span>
+                      <strong>{record.title}</strong>
+                      <small>{record.subtitle}</small>
+                    </div>
+                    <div className="record-meta">
+                      <StatusPill status={record.status} tone={record.tone} />
+                      <span>{record.due ?? record.owner}</span>
+                    </div>
+                  </button>
+                ))}
+
+                {!activeRecords.length ? (
+                  <div className="empty-state">
+                    <strong>Nenhum registro encontrado.</strong>
+                    <span>Ajuste a busca ou selecione outro módulo.</span>
+                  </div>
+                ) : null}
+              </div>
+            </section>
           </div>
 
-          <aside className="panel detail-panel">
-            {selectedRecord ? (
-              <>
-                <div className="detail-head">
-                  <p className="eyebrow">{toneLabel(selectedRecord.tone)}</p>
-                  <h2>{selectedRecord.title}</h2>
-                  <span className={`status ${selectedRecord.tone}`}>{selectedRecord.status}</span>
-                </div>
+          <aside className="side-column">
+            <section className="premium-surface detail-panel">
+              {selectedRecord ? (
+                <>
+                  <div className="detail-header">
+                    <p className="eyebrow">{toneLabel(selectedRecord.tone)}</p>
+                    <h2>{selectedRecord.title}</h2>
+                    <span>{selectedRecord.subtitle}</span>
+                  </div>
 
-                <div className="detail-facts">
-                  <Fact label="Responsável" value={selectedRecord.owner} />
-                  <Fact label="Prazo" value={selectedRecord.due ?? "Sem prazo"} />
-                  <Fact label="Valor" value={selectedRecord.value ?? "Não aplicável"} />
-                </div>
+                  <div className="fact-grid">
+                    <Fact label="Responsável" value={selectedRecord.owner} />
+                    <Fact label="Prazo" value={selectedRecord.due ?? "Sem prazo"} />
+                    <Fact label="Valor" value={selectedRecord.value ?? "Não aplicável"} />
+                  </div>
 
-                <details className="details-box" open>
-                  <summary>Informações</summary>
-                  <ul>
-                    {selectedRecord.details.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                </details>
+                  <details className="info-drawer" open>
+                    <summary>Ver informações</summary>
+                    <ul>
+                      {selectedRecord.details.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </details>
 
-                <div className="detail-actions">
-                  <button className="button primary" type="button">{selectedRecord.action}</button>
-                  <button className="button secondary" type="button">Criar tarefa</button>
-                  <button className="button secondary" type="button">Arquivar</button>
+                  <div className="action-stack">
+                    <button className="button primary" type="button">{selectedRecord.action}</button>
+                    <button className="button secondary" type="button">Criar tarefa</button>
+                    <button className="button ghost" type="button">Arquivar</button>
+                  </div>
+                </>
+              ) : (
+                <div className="empty-state">
+                  <strong>Selecione um registro.</strong>
+                  <span>Os detalhes aparecem neste painel.</span>
                 </div>
-              </>
-            ) : (
-              <div className="empty-state">
-                <strong>Selecione um registro.</strong>
-                <span>Os detalhes aparecem aqui.</span>
-              </div>
-            )}
+              )}
+            </section>
+
+            <section className="premium-surface governance-card">
+              <p className="eyebrow">Governança</p>
+              <strong>IA assistiva, decisão humana.</strong>
+              <span>Prompts e fluxos podem apoiar a rotina, mas a validação final permanece com o escritório.</span>
+            </section>
           </aside>
         </section>
       </section>
@@ -196,9 +226,17 @@ export default function HomePage() {
 
 function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <div className="fact">
+    <div className="fact-card">
       <span>{label}</span>
       <strong>{value}</strong>
     </div>
   );
+}
+
+function StatusPill({ status, tone }: { status: string; tone: StatusTone }) {
+  return <span className={`status-pill ${tone}`}>{status}</span>;
+}
+
+function moduleLabel(moduleId: ModuleId) {
+  return modules.find((module) => module.id === moduleId)?.shortLabel ?? moduleId;
 }
