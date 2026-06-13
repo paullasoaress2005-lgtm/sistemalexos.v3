@@ -1,19 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   color-scheme: dark;
-  --ink: #07111f;
-  --navy: #0b1729;
-  --panel: #111f35;
-  --card: #14243b;
-  --line: #263955;
-  --cyan: #55c9d6;
-  --gold: #c8a45d;
-  --gold-soft: #f0d08a;
-  --silver: #d8dee9;
-  --muted: #91a0b8;
-  --green: #4f9f7a;
-  --wine: #9b2d42;
-  --red: #d05a63;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  --lexos-ink: 7 17 31;
+  --lexos-navy: 11 23 41;
+  --lexos-panel: 17 31 53;
+  --lexos-card: 20 36 59;
+  --lexos-line: 38 57 85;
+  --lexos-cyan: 85 201 214;
+  --lexos-gold: 200 164 93;
+  --lexos-gold-soft: 240 208 138;
+  --lexos-silver: 216 222 233;
+  --lexos-muted: 145 160 184;
+  --lexos-green: 79 159 122;
+  --lexos-wine: 155 45 66;
+  --lexos-red: 208 90 99;
+  --lexos-text-strong: 255 255 255;
+  --lexos-body-background:
+    radial-gradient(circle at 15% -10%, rgba(85, 201, 214, 0.10), transparent 32rem),
+    radial-gradient(circle at 90% 0%, rgba(120, 146, 184, 0.10), transparent 34rem),
+    linear-gradient(180deg, #07111f 0%, #081222 46%, #050b15 100%);
+  --lexos-premium-radial: radial-gradient(circle at top left, rgba(200,164,93,0.14), transparent 30%), radial-gradient(circle at 80% 10%, rgba(71,105,156,0.18), transparent 34%);
+  --lexos-shadow-premium: 0 24px 80px rgba(0, 0, 0, 0.32);
+  --lexos-shadow-glow: 0 0 0 1px rgba(200, 164, 93, 0.16), 0 22px 60px rgba(5, 12, 24, 0.42);
+  --lex-bg: 7 17 31;
+  --lex-surface: 17 31 53;
+  --lex-surface-soft: 20 36 59;
+  --lex-surface-strong: 11 23 41;
+  --lex-text: 255 255 255;
+  --lex-text-muted: 145 160 184;
+  --lex-text-soft: 216 222 233;
+  --lex-border: 38 57 85;
+  --lex-border-strong: 200 164 93;
+  --lex-accent: 200 164 93;
+  --lex-accent-text: 7 17 31;
+  --lex-input-bg: 7 17 31;
+  --lex-input-text: 255 255 255;
+  --lex-input-border: 38 57 85;
+  --lex-card-bg: 20 36 59;
+  --lex-card-text: 255 255 255;
+  --lex-sidebar-bg: 11 23 41;
+  --lex-sidebar-text: 216 222 233;
+  --lex-sidebar-muted: 145 160 184;
+  --lex-button-bg: 200 164 93;
+  --lex-button-text: 7 17 31;
+}
+
+:root[data-lexos-theme="claro-institucional"],
+[data-lexos-theme="claro-institucional"] {
+  color-scheme: light;
+  --lexos-ink: 244 247 251;
+  --lexos-navy: 232 238 247;
+  --lexos-panel: 255 255 255;
+  --lexos-card: 248 250 253;
+  --lexos-line: 195 207 224;
+  --lexos-cyan: 19 132 151;
+  --lexos-gold: 166 126 48;
+  --lexos-gold-soft: 123 91 34;
+  --lexos-silver: 31 46 68;
+  --lexos-muted: 91 106 128;
+  --lexos-green: 42 125 92;
+  --lexos-wine: 139 39 60;
+  --lexos-red: 181 65 78;
+  --lexos-text-strong: 13 27 47;
+  --lexos-body-background:
+    radial-gradient(circle at 10% -10%, rgba(200, 164, 93, 0.13), transparent 30rem),
+    radial-gradient(circle at 92% 0%, rgba(30, 58, 95, 0.12), transparent 32rem),
+    linear-gradient(180deg, #f7f4ed 0%, #eef3f8 48%, #f9fafb 100%);
+  --lexos-premium-radial: radial-gradient(circle at top left, rgba(166,126,48,0.14), transparent 30%), radial-gradient(circle at 80% 10%, rgba(30,58,95,0.11), transparent 34%);
+  --lexos-shadow-premium: 0 24px 70px rgba(21, 35, 56, 0.14);
+  --lexos-shadow-glow: 0 0 0 1px rgba(166, 126, 48, 0.14), 0 20px 54px rgba(42, 58, 82, 0.12);
+  --lex-bg: 244 247 251;
+  --lex-surface: 255 255 255;
+  --lex-surface-soft: 248 250 253;
+  --lex-surface-strong: 232 238 247;
+  --lex-text: 13 27 47;
+  --lex-text-muted: 82 99 123;
+  --lex-text-soft: 31 46 68;
+  --lex-border: 188 202 220;
+  --lex-border-strong: 128 145 168;
+  --lex-accent: 166 126 48;
+  --lex-accent-text: 13 27 47;
+  --lex-input-bg: 255 255 255;
+  --lex-input-text: 13 27 47;
+  --lex-input-border: 172 188 208;
+  --lex-card-bg: 255 255 255;
+  --lex-card-text: 13 27 47;
+  --lex-sidebar-bg: 255 255 255;
+  --lex-sidebar-text: 13 27 47;
+  --lex-sidebar-muted: 82 99 123;
+  --lex-button-bg: 13 27 47;
+  --lex-button-text: 255 255 255;
+}
+
+:root[data-lexos-theme="alto-contraste"],
+[data-lexos-theme="alto-contraste"] {
+  color-scheme: dark;
+  --lexos-ink: 1 5 12;
+  --lexos-navy: 3 10 22;
+  --lexos-panel: 7 18 34;
+  --lexos-card: 10 26 48;
+  --lexos-line: 89 116 153;
+  --lexos-cyan: 103 232 241;
+  --lexos-gold: 245 191 78;
+  --lexos-gold-soft: 255 220 139;
+  --lexos-silver: 247 250 255;
+  --lexos-muted: 195 207 225;
+  --lexos-green: 92 218 157;
+  --lexos-wine: 179 50 77;
+  --lexos-red: 255 116 128;
+  --lexos-text-strong: 255 255 255;
+  --lexos-body-background:
+    radial-gradient(circle at 10% -10%, rgba(245, 191, 78, 0.18), transparent 28rem),
+    linear-gradient(180deg, #01050c 0%, #030814 44%, #01040a 100%);
+  --lexos-premium-radial: radial-gradient(circle at top left, rgba(245,191,78,0.2), transparent 28%), radial-gradient(circle at 80% 10%, rgba(130,170,230,0.16), transparent 32%);
+  --lexos-shadow-premium: 0 24px 84px rgba(0, 0, 0, 0.56);
+  --lexos-shadow-glow: 0 0 0 1px rgba(245, 191, 78, 0.28), 0 24px 64px rgba(0, 0, 0, 0.58);
+  --lex-bg: 1 5 12;
+  --lex-surface: 7 18 34;
+  --lex-surface-soft: 10 26 48;
+  --lex-surface-strong: 3 10 22;
+  --lex-text: 255 255 255;
+  --lex-text-muted: 195 207 225;
+  --lex-text-soft: 247 250 255;
+  --lex-border: 89 116 153;
+  --lex-border-strong: 245 191 78;
+  --lex-accent: 245 191 78;
+  --lex-accent-text: 1 5 12;
+  --lex-input-bg: 3 10 22;
+  --lex-input-text: 255 255 255;
+  --lex-input-border: 89 116 153;
+  --lex-card-bg: 10 26 48;
+  --lex-card-text: 255 255 255;
+  --lex-sidebar-bg: 3 10 22;
+  --lex-sidebar-text: 247 250 255;
+  --lex-sidebar-muted: 195 207 225;
+  --lex-button-bg: 245 191 78;
+  --lex-button-text: 1 5 12;
+}
+
+:root[data-lexos-theme="minimalista-executivo"],
+[data-lexos-theme="minimalista-executivo"] {
+  color-scheme: dark;
+  --lexos-ink: 15 20 27;
+  --lexos-navy: 23 31 41;
+  --lexos-panel: 30 39 51;
+  --lexos-card: 36 47 61;
+  --lexos-line: 67 78 94;
+  --lexos-cyan: 100 188 198;
+  --lexos-gold: 176 147 91;
+  --lexos-gold-soft: 210 188 139;
+  --lexos-silver: 226 231 238;
+  --lexos-muted: 163 173 188;
+  --lexos-green: 91 151 124;
+  --lexos-wine: 132 58 72;
+  --lexos-red: 202 105 113;
+  --lexos-text-strong: 248 250 252;
+  --lexos-body-background:
+    linear-gradient(180deg, #111820 0%, #151d27 52%, #0f151d 100%);
+  --lexos-premium-radial: linear-gradient(180deg, rgba(176,147,91,0.055), transparent 42%);
+  --lexos-shadow-premium: 0 18px 46px rgba(0, 0, 0, 0.24);
+  --lexos-shadow-glow: 0 0 0 1px rgba(176, 147, 91, 0.09), 0 16px 36px rgba(0, 0, 0, 0.24);
+  --lex-bg: 15 20 27;
+  --lex-surface: 30 39 51;
+  --lex-surface-soft: 36 47 61;
+  --lex-surface-strong: 23 31 41;
+  --lex-text: 248 250 252;
+  --lex-text-muted: 163 173 188;
+  --lex-text-soft: 226 231 238;
+  --lex-border: 67 78 94;
+  --lex-border-strong: 176 147 91;
+  --lex-accent: 176 147 91;
+  --lex-accent-text: 15 20 27;
+  --lex-input-bg: 23 31 41;
+  --lex-input-text: 248 250 252;
+  --lex-input-border: 67 78 94;
+  --lex-card-bg: 36 47 61;
+  --lex-card-text: 248 250 252;
+  --lex-sidebar-bg: 23 31 41;
+  --lex-sidebar-text: 226 231 238;
+  --lex-sidebar-muted: 163 173 188;
+  --lex-button-bg: 176 147 91;
+  --lex-button-text: 15 20 27;
 }
 
 * {
@@ -21,37 +191,43 @@
 }
 
 html {
-  min-height: 100%;
-  background: var(--ink);
   scroll-behavior: smooth;
+  text-rendering: geometricPrecision;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 15% -10%, rgba(85, 201, 214, 0.10), transparent 32rem),
-    radial-gradient(circle at 90% 0%, rgba(120, 146, 184, 0.10), transparent 34rem),
-    linear-gradient(180deg, #07111f 0%, #081222 46%, #050b15 100%);
-  color: var(--silver);
-  font-family: "Aptos", "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  background: var(--lexos-body-background);
+  color: rgb(var(--lexos-silver));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button,
-input {
-  font: inherit;
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
 }
 
-button {
-  cursor: pointer;
+button,
+a {
+  outline: none;
 }
 
 button:focus-visible,
-input:focus-visible {
-  outline: 0;
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.22), 0 0 0 1px rgba(240, 208, 138, 0.48);
+}
+
+::selection {
+  background: rgba(200, 164, 93, 0.35);
 }
 
 .premium-scrollbar {
@@ -59,665 +235,915 @@ input:focus-visible {
   scrollbar-width: thin;
 }
 
-.lexos-shell {
-  display: grid;
-  grid-template-columns: 264px minmax(0, 1fr);
-  min-height: 100vh;
+.premium-scrollbar::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
 }
 
-.sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  border-right: 1px solid rgba(38, 57, 85, 0.74);
-  background: rgba(11, 23, 41, 0.88);
-  padding: 18px 14px;
-  backdrop-filter: blur(18px);
+.premium-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(240, 208, 138, 0.72), rgba(200, 164, 93, 0.42));
+  border: 2px solid rgba(17, 31, 53, 0.85);
+  border-radius: 999px;
 }
 
-.brand-card,
-.unit-card,
+.premium-scrollbar::-webkit-scrollbar-track {
+  background: rgba(17, 31, 53, 0.8);
+}
+
 .premium-surface {
-  border: 1px solid rgba(38, 57, 85, 0.70);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0) 42%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 42%),
     linear-gradient(180deg, rgba(20, 36, 59, 0.88), rgba(11, 23, 41, 0.84));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 18px 54px rgba(0, 0, 0, 0.22);
 }
 
-.brand-card {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  border-radius: 12px;
-  padding: 12px;
+.premium-lift {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease;
 }
 
-.brand-card img {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 24px rgba(85, 201, 214, 0.12));
+.premium-lift:hover {
+  border-color: rgba(85, 201, 214, 0.34);
+  box-shadow: 0 0 0 1px rgba(85, 201, 214, 0.08), 0 18px 46px rgba(0, 0, 0, 0.24);
+  transform: translateY(-2px);
 }
 
-.brand-card span,
-.unit-card p,
-.eyebrow,
-.nav-group p,
-.record-module {
-  margin: 0;
-  color: var(--cyan);
-  font-family: "DM Mono", "Roboto Mono", Consolas, monospace;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.premium-divider {
+  background: linear-gradient(90deg, transparent, rgba(200, 164, 93, 0.42), transparent);
+  height: 1px;
 }
 
-.brand-card strong {
-  display: block;
-  margin-top: 2px;
-  color: white;
-  font-size: 18px;
-  line-height: 1;
-}
-
-.brand-card small,
-.unit-card span {
-  display: block;
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.sidebar-nav {
-  display: grid;
-  gap: 24px;
-  margin-top: 24px;
-}
-
-.nav-group {
-  display: grid;
-  gap: 8px;
-}
-
-.nav-group p {
-  color: var(--muted);
-  padding: 0 8px 4px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 42px;
-  border: 1px solid rgba(38, 57, 85, 0.68);
-  border-radius: 8px;
-  background: rgba(7, 17, 31, 0.32);
-  color: var(--silver);
-  padding: 9px 11px;
-  text-align: left;
-  transition: 180ms ease;
-}
-
-.nav-item span {
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.nav-item small {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.nav-item:hover,
-.nav-item.active {
-  border-color: rgba(200, 164, 93, 0.64);
-  background: rgba(200, 164, 93, 0.10);
-  color: white;
-}
-
-.unit-card {
-  margin-top: 28px;
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.unit-card strong {
-  display: block;
-  margin-top: 12px;
-  color: white;
-  font-size: 14px;
-}
-
-.workspace {
-  min-width: 0;
-  padding: 16px clamp(16px, 3vw, 32px) 32px;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  border-bottom: 1px solid rgba(38, 57, 85, 0.62);
-  background: linear-gradient(180deg, rgba(7, 17, 31, 0.96), rgba(7, 17, 31, 0.78));
-  padding: 10px 0 16px;
-  backdrop-filter: blur(16px);
-}
-
-.topbar h1,
-.command-panel h2,
-.panel-head h2,
-.detail-header h2 {
-  margin: 0;
-  color: white;
-  font-family: Newsreader, Georgia, "Times New Roman", serif;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-}
-
-.topbar h1 {
-  margin-top: 4px;
-  font-size: clamp(28px, 3vw, 38px);
-  line-height: 1.04;
-}
-
-.topbar-copy span {
-  display: block;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.topbar-actions,
-.action-stack {
-  display: flex;
-  gap: 10px;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0 15px;
-  font-size: 12px;
-  font-weight: 850;
-  transition: 180ms ease;
-  white-space: nowrap;
-}
-
-.button.primary {
-  border-color: rgba(240, 208, 138, 0.44);
-  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
-  color: var(--ink);
-}
-
-.button.secondary,
-.button.ghost {
-  border-color: rgba(38, 57, 85, 0.80);
-  background: rgba(7, 17, 31, 0.46);
-  color: var(--silver);
-}
-
-.button.ghost {
-  color: #ff9aa4;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(200, 164, 93, 0.70);
-}
-
-.mobile-tabs {
-  display: none;
-}
-
-.page-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.main-column,
-.side-column {
-  display: grid;
-  align-content: start;
-  gap: 14px;
-  min-width: 0;
-}
-
-.premium-surface {
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.command-panel {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.4fr);
-  align-items: center;
-  gap: 16px;
-}
-
-.command-panel h2 {
-  margin-top: 8px;
-  max-width: 580px;
-  font-size: clamp(18px, 2vw, 24px);
-  line-height: 1.12;
-}
-
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.metric-card,
-.shortcut-card,
-.record-row,
-.fact-card {
-  border: 1px solid rgba(38, 57, 85, 0.70);
-  background: rgba(20, 36, 59, 0.62);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
-}
-
-.metric-card {
-  min-height: 78px;
-  border-radius: 10px;
-  padding: 12px;
-  text-align: left;
-  transition: 180ms ease;
-}
-
-.metric-card span,
-.fact-card span,
-.shortcut-card span,
-.record-row small,
-.record-meta span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.metric-card strong {
-  display: block;
-  margin-top: 8px;
-  color: white;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
-  line-height: 1;
-}
-
-.metric-card.attention {
-  border-color: rgba(200, 164, 93, 0.38);
-}
-
-.metric-card.risk {
-  border-color: rgba(155, 45, 66, 0.70);
-}
-
-.metric-card.success {
-  border-color: rgba(79, 159, 122, 0.55);
-}
-
-.metric-card.info {
-  border-color: rgba(85, 201, 214, 0.45);
-}
-
-.metric-card:hover,
-.shortcut-card:hover,
-.record-row:hover {
-  border-color: rgba(200, 164, 93, 0.62);
-  background: rgba(20, 36, 59, 0.82);
-}
-
-.shortcut-grid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.shortcut-card {
-  min-height: 68px;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: left;
-  transition: 180ms ease;
-}
-
-.shortcut-card strong {
-  display: block;
-  margin-top: 6px;
-  color: white;
-  font-size: 12px;
-  line-height: 1.2;
-}
-
-.list-panel {
-  min-height: 390px;
-}
-
-.panel-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-
-.panel-head h2 {
-  margin-top: 6px;
-  font-size: 20px;
-}
-
-.search-field {
-  display: grid;
-  gap: 6px;
-  min-width: min(360px, 48%);
-}
-
-.search-field span {
-  color: var(--muted);
-  font-family: "DM Mono", Consolas, monospace;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.search-field input {
+.premium-input {
   width: 100%;
-  border: 1px solid rgba(38, 57, 85, 0.82);
-  border-radius: 8px;
-  background: rgba(7, 17, 31, 0.66);
-  color: white;
-  padding: 12px;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(38, 57, 85, 0.95);
+  background: rgb(var(--lexos-ink) / 0.92);
+  color: rgb(var(--lexos-text-strong));
+  padding: 0.78rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
-.search-field input::placeholder {
-  color: rgba(145, 160, 184, 0.74);
+.premium-input:hover {
+  border-color: rgba(200, 164, 93, 0.46);
 }
 
-.record-table {
-  display: grid;
-  gap: 8px;
+.premium-input:focus {
+  border-color: rgba(200, 164, 93, 0.82);
+  background: rgb(var(--lexos-navy) / 0.98);
+  outline: none;
 }
 
-.record-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
+.premium-input option {
+  background: rgb(var(--lexos-navy));
+  color: rgb(var(--lexos-text-strong));
+}
+
+.field {
   width: 100%;
-  border-radius: 10px;
-  padding: 11px 12px;
-  text-align: left;
-  transition: 180ms ease;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(5, 13, 25, 0.92);
+  padding: 0.75rem 1rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.record-row.selected {
-  border-color: rgba(200, 164, 93, 0.74);
-  background: rgba(200, 164, 93, 0.09);
+.field:focus {
+  border-color: rgba(212, 175, 55, 0.82);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.10);
 }
 
-.record-row strong {
-  display: block;
-  margin-top: 6px;
-  color: white;
-  font-size: 14px;
+
+.lexos-theme-shell .text-white {
+  color: rgb(var(--lexos-text-strong));
 }
 
-.record-row small {
-  display: block;
-  margin-top: 4px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/42,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/48,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/52,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/55,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/60,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/62,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/70,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/72,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/74,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-ink\/78 {
+  background-color: rgb(var(--lexos-panel) / 0.82);
 }
 
-.record-meta {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  gap: 8px;
+.lexos-theme-shell[data-lexos-theme="minimalista-executivo"] .premium-lift:hover {
+  transform: none;
 }
 
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 26px;
-  border: 1px solid rgba(38, 57, 85, 0.74);
-  border-radius: 999px;
-  padding: 4px 10px;
-  color: var(--silver);
-  font-size: 11px;
-  font-weight: 900;
+/* Hotfix 3N.3: legibilidade do tema Claro institucional em superfícies que usam gradientes/cores fixas. */
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] {
+  background-color: rgb(var(--lexos-ink));
 }
 
-.status-pill.attention {
-  border-color: rgba(200, 164, 93, 0.54);
-  background: rgba(200, 164, 93, 0.12);
-  color: var(--gold-soft);
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] section[class*="rgba(12,25,43"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] section[class*="rgba(6,12,23"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] div[class*="rgba(12,25,43"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] div[class*="rgba(6,12,23"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] article[class*="rgba(12,25,43"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] article[class*="rgba(6,12,23"] {
+  background:
+    radial-gradient(circle at top left, rgba(166, 126, 48, 0.12), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(238, 243, 248, 0.96)) !important;
+  border-color: rgb(var(--lexos-line) / 0.9) !important;
 }
 
-.status-pill.risk {
-  border-color: rgba(155, 45, 66, 0.72);
-  background: rgba(155, 45, 66, 0.18);
-  color: #ff9aa4;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] aside,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] header,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] nav,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-navy"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-panel"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-card"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-ink"] {
+  border-color: rgb(var(--lexos-line) / 0.78);
 }
 
-.status-pill.success {
-  border-color: rgba(79, 159, 122, 0.62);
-  background: rgba(79, 159, 122, 0.13);
-  color: #83dcb4;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-surface,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-lift,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .shadow-premium,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .shadow-glow {
+  box-shadow: var(--lexos-shadow-glow);
 }
 
-.status-pill.info {
-  border-color: rgba(85, 201, 214, 0.50);
-  background: rgba(85, 201, 214, 0.10);
-  color: var(--cyan);
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-muted,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-silver,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] label,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] th,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] td {
+  color: rgb(var(--lexos-silver));
 }
 
-.detail-panel,
-.governance-card {
-  position: sticky;
-  top: 112px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-gold,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-goldSoft {
+  color: rgb(var(--lexos-gold-soft));
 }
 
-.governance-card {
-  top: auto;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-input,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .field,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] input,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] select,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] textarea {
+  background-color: rgb(255 255 255 / 0.96);
+  border-color: rgb(var(--lexos-line) / 0.95);
+  color: rgb(var(--lexos-text-strong));
 }
 
-.detail-header {
-  display: grid;
-  gap: 8px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-input::placeholder,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .field::placeholder,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] input::placeholder,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] textarea::placeholder {
+  color: rgb(var(--lexos-muted) / 0.88);
 }
 
-.detail-header h2 {
-  font-size: 23px;
-  line-height: 1.04;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-input:focus,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .field:focus,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] input:focus,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] select:focus,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] textarea:focus {
+  background-color: #ffffff;
+  border-color: rgb(var(--lexos-gold) / 0.9);
+  box-shadow: 0 0 0 3px rgb(var(--lexos-gold) / 0.16);
 }
 
-.detail-header span,
-.governance-card span {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] button,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] a {
+  text-decoration-color: rgb(var(--lexos-gold) / 0.45);
 }
 
-.fact-grid {
-  display: grid;
-  gap: 10px;
-  margin-top: 16px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .hover\:bg-lexos-gold:hover {
+  color: #102033;
 }
 
-.fact-card {
-  border-radius: 10px;
-  padding: 10px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold\/8,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold\/10,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold\/12,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold\/14,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-gold\/15,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-green\/8,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-green\/10,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-green\/12,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-wine\/10,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .bg-lexos-wine\/16 {
+  border-color: currentColor;
 }
 
-.fact-card strong {
-  display: block;
-  margin-top: 7px;
-  color: white;
-  font-size: 14px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [role="dialog"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .modal,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="backdrop-blur"] {
+  color: rgb(var(--lexos-silver));
 }
 
-.info-drawer {
-  margin-top: 14px;
-  border: 1px solid rgba(38, 57, 85, 0.70);
-  border-radius: 10px;
-  background: rgba(7, 17, 31, 0.36);
-  padding: 12px;
+/* Hotfix 3N.4: tokens semânticos e neutralização de hardcoded dark no Claro institucional. */
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] {
+  color: rgb(var(--lex-text));
 }
 
-.info-drawer summary {
-  color: var(--gold-soft);
-  font-size: 13px;
-  font-weight: 900;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] aside {
+  background: rgb(var(--lex-sidebar-bg) / 0.96) !important;
+  color: rgb(var(--lex-sidebar-text));
+  border-color: rgb(var(--lex-border) / 0.9) !important;
 }
 
-.info-drawer ul {
-  display: grid;
-  gap: 8px;
-  margin: 12px 0 0;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: 13px;
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] header {
+  background: rgb(var(--lex-surface) / 0.88) !important;
+  color: rgb(var(--lex-text));
+  border-color: rgb(var(--lex-border) / 0.9) !important;
+  box-shadow: 0 18px 48px rgb(21 35 56 / 0.12) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#0a1424"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#0b1728"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#0b1729"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#111f35"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#182338"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-[#14243b"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-black"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-slate-9"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-zinc-9"] {
+  background: rgb(var(--lex-surface) / 0.97) !important;
+  color: rgb(var(--lex-text));
+  border-color: rgb(var(--lex-border) / 0.9) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-gradient-to-br"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-gradient-to-b"] {
+  color: rgb(var(--lex-text));
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="bg-"][class*="radial-gradient"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="linear-gradient"][class*="rgba(12"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="linear-gradient"][class*="rgba(6"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(section, article, div, button)[class*="linear-gradient"][class*="rgba(5"] {
+  background:
+    radial-gradient(circle at top left, rgb(var(--lex-accent) / 0.10), transparent 34%),
+    linear-gradient(135deg, rgb(var(--lex-surface) / 0.98), rgb(var(--lex-surface-soft) / 0.94)) !important;
+  color: rgb(var(--lex-text));
+  border-color: rgb(var(--lex-border) / 0.9) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-white,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="text-white/"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-slate-100,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-slate-200,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-zinc-100,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-zinc-200 {
+  color: rgb(var(--lex-text)) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .hover\:text-white:hover,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .hover\:text-lexos-gold:hover,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .hover\:text-lexos-goldSoft:hover {
+  color: rgb(var(--lex-accent-text)) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-muted\/75,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .text-lexos-muted\/80,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .placeholder\:text-lexos-muted\/75::placeholder,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .placeholder\:text-lexos-muted\/80::placeholder {
+  color: rgb(var(--lex-text-muted) / 0.95) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.bg-lexos-card, .bg-lexos-panel, .bg-lexos-navy, .bg-lexos-ink),
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-card/"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-panel/"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-navy/"],
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] [class*="bg-lexos-ink/"] {
+  color: rgb(var(--lex-text));
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.bg-lexos-gold, [class*="bg-lexos-gold/"]) :is(.text-lexos-ink, .text-white),
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.bg-lexos-gold, [class*="bg-lexos-gold/"]).text-lexos-ink,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.bg-lexos-gold, [class*="bg-lexos-gold/"]).text-white {
+  color: rgb(var(--lex-accent-text)) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(button, a)[class*="border-lexos-line"] {
+  background-color: rgb(var(--lex-surface) / 0.72);
+  color: rgb(var(--lex-text));
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(button, a)[class*="border-lexos-gold"] {
+  color: rgb(var(--lex-accent-text));
+  border-color: rgb(var(--lex-accent) / 0.75);
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.ring-white\/5, [class*="ring-white/"]) {
+  --tw-ring-color: rgb(var(--lex-border) / 0.38) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] :is(.border-white\/5, .border-white\/10, [class*="border-white/"]) {
+  border-color: rgb(var(--lex-border) / 0.55) !important;
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] table,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] tbody,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] thead {
+  color: rgb(var(--lex-text));
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-surface {
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.90), rgb(var(--lex-surface-soft) / 0.78)),
+    rgb(var(--lex-surface));
+}
+
+/* Etapa 4B: empty states premium com contraste consistente entre temas. */
+.premium-empty-state {
+  background:
+    radial-gradient(circle at top, rgb(var(--lexos-gold) / 0.10), transparent 34%),
+    rgb(var(--lexos-ink) / 0.46);
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .premium-empty-state {
+  background:
+    radial-gradient(circle at top, rgb(var(--lexos-gold) / 0.12), transparent 36%),
+    rgb(var(--lexos-panel) / 0.92);
+}
+
+/* Experimento 4B.1: densidade premium operacional sem alterar lógica ou dados. */
+.lexos-density-compact {
+  --lexos-density-card-pad: 1rem;
+  --lexos-density-card-pad-lg: 1.15rem;
+  --lexos-density-radius: 1.25rem;
+}
+
+.lexos-density-compact :where(.premium-surface) {
+  border-radius: var(--lexos-density-radius);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 18px 56px rgba(0, 0, 0, 0.28);
+}
+
+.lexos-density-compact :where(.shadow-premium) {
+  --tw-shadow: 0 18px 56px rgba(0, 0, 0, 0.30);
+  --tw-shadow-colored: 0 18px 56px var(--tw-shadow-color);
+}
+
+.lexos-density-compact :where(.shadow-glow) {
+  --tw-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+  --tw-shadow-colored: 0 12px 34px var(--tw-shadow-color);
+}
+
+.lexos-density-compact :where(button, a, input, select, textarea) {
+  scroll-margin-top: 5.5rem;
+}
+
+.lexos-density-compact :where(input, select, textarea) {
+  min-height: 2.55rem;
+}
+
+.lexos-density-compact :where(table) {
   line-height: 1.45;
 }
 
-.action-stack {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 14px;
+.lexos-density-compact :where(.premium-empty-state) {
+  padding-block: 1.25rem;
 }
 
-.governance-card {
-  display: grid;
-  gap: 8px;
+.lexos-density-compact :where([class*="leading-7"]) {
+  line-height: 1.6;
 }
 
-.governance-card strong {
+.lexos-density-compact :where([class*="tracking-[0.28em]"], [class*="tracking-[0.34em]"]) {
+  letter-spacing: 0.22em;
+}
+
+@media (min-width: 1024px) {
+  .lexos-density-compact :where(.premium-surface) {
+    padding: var(--lexos-density-card-pad-lg);
+  }
+}
+
+/* Etapa 4B.2 — densidade operacional premium para uso diário. */
+.lexos-density-compact main {
+  letter-spacing: -0.004em;
+}
+
+.lexos-density-compact .premium-surface {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 56px rgba(0, 0, 0, 0.27);
+}
+
+.lexos-density-compact :is(input, select, textarea, .premium-input) {
+  min-height: 2.55rem;
+}
+
+.lexos-density-compact :is(button, a) {
+  text-underline-offset: 4px;
+}
+
+.lexos-density-compact .premium-lift:hover {
+  transform: translateY(-1px);
+}
+
+.lexos-density-compact :is(section, article, aside, header, dialog) {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Hotfix 4B.2 — hover premium consistente sem aumentar densidade. */
+.subtle-hover-card {
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.subtle-hover-card:hover {
+  border-color: rgb(var(--lexos-gold) / 0.34);
+  background-color: rgb(var(--lexos-card) / 0.82);
+  box-shadow: 0 10px 26px rgb(0 0 0 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.035);
+}
+
+.interactive-card {
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-1px);
+  border-color: rgb(var(--lexos-gold) / 0.55);
+  background-color: rgb(var(--lexos-card) / 0.9);
+  box-shadow: 0 14px 34px rgb(0 0 0 / 0.22), 0 0 0 1px rgb(var(--lexos-gold) / 0.08);
+}
+
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .subtle-hover-card:hover,
+.lexos-theme-shell[data-lexos-theme="claro-institucional"] .interactive-card:hover {
+  background-color: rgb(var(--lexos-panel) / 0.98);
+  box-shadow: 0 12px 30px rgb(21 35 56 / 0.12), 0 0 0 1px rgb(var(--lexos-gold) / 0.10);
+}
+
+/* Etapa 4C — ritmo compacto reutilizável para telas operacionais, calibrado pela Visão Geral. */
+.lexos-density-compact .operational-stack-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.lexos-density-compact .operational-hero-compact {
+  padding: 1rem;
+}
+
+.lexos-density-compact .operational-metrics-grid-compact,
+.lexos-density-compact .operational-list-grid-compact {
+  gap: 0.75rem;
+}
+
+.lexos-density-compact .operational-panel-compact > :first-child {
+  margin-bottom: 0.625rem;
+}
+
+.lexos-density-compact .operational-control-compact {
+  min-height: 2.35rem;
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  outline: none;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.lexos-density-compact .operational-control-compact:focus {
+  border-color: rgb(var(--lexos-gold));
+}
+
+.lexos-density-compact .operational-chip-compact {
+  padding: 0.35rem 0.7rem;
+}
+
+.lexos-density-compact .operational-toggle-compact {
+  min-height: 2.35rem;
+  padding: 0.45rem 0.65rem;
+}
+
+.lexos-density-compact .operational-record-card {
+  padding: 0.875rem;
+}
+
+.lexos-density-compact .operational-badges-compact > span {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
+}
+
+.lexos-density-compact .operational-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid rgb(var(--lexos-line) / 0.7);
+}
+
+.lexos-density-compact .operational-action {
+  border-width: 1px;
+  border-radius: 0.65rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1rem;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+@media (min-width: 1024px) {
+  .lexos-density-compact .operational-hero-compact {
+    padding: 1.125rem;
+  }
+}
+
+/* Auditoria visual 4C.1 — painéis executivos seguem o mesmo conforto compacto da Visão Geral. */
+.lexos-density-compact .executive-panel-compact {
+  padding: 1rem;
+}
+
+/* Calm operational surfaces used by the approved executive visual direction. */
+.calm-workspace .premium-surface {
+  border-color: rgba(255, 255, 255, 0.045);
+  background: rgba(20, 36, 59, 0.34);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.07);
+}
+
+.calm-workspace .premium-lift:hover {
+  border-color: rgba(85, 201, 214, 0.16);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+}
+
+.calm-hero {
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: radial-gradient(circle at top left, rgba(85, 201, 214, 0.105), transparent 40%), linear-gradient(135deg, rgba(18, 37, 59, 0.92), rgba(8, 18, 33, 0.82));
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.14);
+}
+
+.calm-metric-card {
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.032);
+  padding: 0.875rem 1rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.065);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.calm-metric-card:hover {
+  background: rgba(255, 255, 255, 0.052);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.calm-record-card,
+.calm-priority-card {
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.055);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.calm-record-card:hover,
+.calm-priority-card:hover {
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.calm-primary-action,
+.calm-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.calm-primary-action {
+  background: rgb(var(--lexos-cyan));
+  color: rgb(var(--lexos-ink));
+}
+
+.calm-primary-action:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.calm-secondary-action {
+  background: rgba(255, 255, 255, 0.055);
+  color: rgb(var(--lexos-silver));
+}
+
+.calm-secondary-action:hover {
+  background: rgba(255, 255, 255, 0.09);
   color: white;
-  font-size: 15px;
 }
 
-.empty-state {
-  display: grid;
-  gap: 6px;
-  border: 1px dashed rgba(200, 164, 93, 0.38);
-  border-radius: 10px;
-  padding: 18px;
-  color: var(--muted);
-}
-
-.empty-state strong {
-  color: white;
-}
-
-@media (max-width: 1180px) {
-  .lexos-shell {
-    grid-template-columns: 224px minmax(0, 1fr);
-  }
-
-  .page-grid,
-  .command-panel {
-    grid-template-columns: 1fr;
-  }
-
-  .side-column {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .detail-panel,
-  .governance-card {
-    position: static;
-  }
-
-  .shortcut-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (min-width: 1024px) {
+  .calm-hero {
+    padding: 1.75rem;
   }
 }
 
-@media (max-width: 860px) {
-  .lexos-shell {
-    display: block;
-  }
+/* CRM LEX.OS absorption foundation: dark operational identity, ambient grid and unified components. */
+:root,
+:root[data-lexos-theme],
+[data-lexos-theme] {
+  color-scheme: dark;
+  --ink-950: #030b13;
+  --ink-925: #05111d;
+  --ink-900: #071725;
+  --ink-850: #0a1d2c;
+  --ink-800: #102536;
+  --line: rgba(151, 192, 210, 0.14);
+  --line-strong: rgba(151, 210, 231, 0.25);
+  --paper: #f3f7f8;
+  --muted: #94a8b6;
+  --subtle: #6f8796;
+  --cyan: #6ed9ff;
+  --cyan-soft: rgba(110, 217, 255, 0.14);
+  --gold: #d7b96b;
+  --gold-soft: rgba(215, 185, 107, 0.14);
+  --green: #65d6a3;
+  --red: #f18888;
+  --warning: #efc66f;
+  --lexos-ink: 3 11 19;
+  --lexos-navy: 5 17 29;
+  --lexos-panel: 7 23 37;
+  --lexos-card: 10 29 44;
+  --lexos-line: 151 192 210;
+  --lexos-cyan: 110 217 255;
+  --lexos-gold: 215 185 107;
+  --lexos-gold-soft: 239 198 111;
+  --lexos-silver: 243 247 248;
+  --lexos-muted: 148 168 182;
+  --lexos-green: 101 214 163;
+  --lexos-wine: 120 42 52;
+  --lexos-red: 241 136 136;
+  --lexos-text-strong: 243 247 248;
+  --lexos-body-background:
+    radial-gradient(circle at 20% -20%, rgba(110, 217, 255, 0.10), transparent 30rem),
+    radial-gradient(circle at 82% 4%, rgba(215, 185, 107, 0.07), transparent 25rem),
+    linear-gradient(180deg, #030b13 0%, #05111d 52%, #030b13 100%);
+  --lexos-premium-radial: linear-gradient(180deg, rgba(110,217,255,0.035), transparent 34%), linear-gradient(135deg, rgba(215,185,107,0.025), transparent 46%);
+  --lexos-shadow-premium: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --lexos-shadow-glow: 0 0 0 1px rgba(110, 217, 255, 0.12), 0 16px 38px rgba(0, 0, 0, 0.30);
+  --lex-bg: 3 11 19;
+  --lex-surface: 7 23 37;
+  --lex-surface-soft: 10 29 44;
+  --lex-surface-strong: 5 17 29;
+  --lex-text: 243 247 248;
+  --lex-text-muted: 148 168 182;
+  --lex-text-soft: 243 247 248;
+  --lex-border: 151 192 210;
+  --lex-border-strong: 151 210 231;
+  --lex-accent: 110 217 255;
+  --lex-accent-text: 3 11 19;
+  --lex-input-bg: 5 17 29;
+  --lex-input-text: 243 247 248;
+  --lex-input-border: 151 192 210;
+  --lex-card-bg: 10 29 44;
+  --lex-card-text: 243 247 248;
+  --lex-sidebar-bg: 3 11 19;
+  --lex-sidebar-text: 243 247 248;
+  --lex-sidebar-muted: 148 168 182;
+  --lex-button-bg: 110 217 255;
+  --lex-button-text: 3 11 19;
+}
 
-  .sidebar {
-    display: none;
-  }
+html {
+  background: var(--ink-950);
+}
 
-  .workspace {
-    padding: 14px 14px 24px;
-  }
+body {
+  min-height: 100vh;
+  background: var(--lexos-body-background);
+  color: var(--paper);
+  font-family: Manrope, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: geometricPrecision;
+}
 
-  .topbar {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+.font-serif, .lexos-editorial {
+  font-family: Newsreader, Georgia, Cambria, "Times New Roman", serif;
+}
 
-  .topbar-actions,
-  .side-column {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
+.font-mono, .lexos-mono, code, kbd, samp, .status, .priority, .tag {
+  font-family: "DM Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
 
-  .topbar-actions {
-    display: grid;
-  }
+.lexos-theme-shell {
+  background: var(--lexos-body-background) !important;
+}
 
-  .mobile-tabs {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-  }
+.ambient-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.9;
+}
 
-  .mobile-tabs button {
-    flex: 0 0 auto;
-    border: 1px solid rgba(38, 57, 85, 0.72);
-    border-radius: 999px;
-    background: rgba(7, 17, 31, 0.48);
-    color: var(--silver);
-    padding: 9px 13px;
-    font-size: 12px;
-    font-weight: 900;
-  }
+.ambient-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(151, 192, 210, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(151, 192, 210, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.50) 58%, transparent 100%);
+}
 
-  .mobile-tabs button.active {
-    border-color: rgba(200, 164, 93, 0.72);
-    color: var(--gold-soft);
-  }
+.grid-light {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  left: calc(var(--grid-x, 50vw) - 260px);
+  top: calc(var(--grid-y, 20vh) - 260px);
+  background: radial-gradient(circle, rgba(110, 217, 255, 0.105), rgba(215, 185, 107, 0.045) 28%, transparent 64%);
+  filter: blur(2px);
+  transition: left 90ms linear, top 90ms linear, opacity 160ms ease;
+}
 
-  .metric-grid,
-  .shortcut-grid,
-  .side-column {
-    grid-template-columns: 1fr;
-  }
+.grid-crosshair-x,
+.grid-crosshair-y {
+  position: absolute;
+  opacity: 0.18;
+  background: linear-gradient(90deg, transparent, rgba(110,217,255,.45), transparent);
+}
 
-  .panel-head,
-  .record-row {
-    grid-template-columns: 1fr;
-  }
+.grid-crosshair-x {
+  left: 0;
+  right: 0;
+  top: var(--grid-y, 20vh);
+  height: 1px;
+}
 
-  .panel-head {
-    align-items: stretch;
-  }
+.grid-crosshair-y {
+  top: 0;
+  bottom: 0;
+  left: var(--grid-x, 50vw);
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(215,185,107,.36), transparent);
+}
 
-  .search-field {
-    min-width: 0;
-  }
+.premium-surface,
+.panel,
+.table-shell {
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  background: linear-gradient(180deg, rgba(10, 29, 44, 0.84), rgba(5, 17, 29, 0.82)) !important;
+  box-shadow: inset 0 1px 0 rgba(243, 247, 248, 0.035), 0 14px 40px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(18px);
+}
 
-  .record-meta {
-    align-items: flex-start;
+.premium-lift {
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.premium-lift:hover {
+  border-color: var(--line-strong) !important;
+  box-shadow: inset 0 1px 0 rgba(243,247,248,.045), 0 16px 42px rgba(0,0,0,.26) !important;
+  transform: translateY(-2px);
+}
+
+button, a, input, select, textarea {
+  border-radius: 5px !important;
+}
+
+input, select, textarea, .premium-input, .field {
+  border: 1px solid var(--line) !important;
+  background: rgba(5, 17, 29, 0.88) !important;
+  color: var(--paper) !important;
+  box-shadow: none !important;
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+button:focus-visible, a:focus-visible {
+  outline: 2px solid rgba(110, 217, 255, 0.72) !important;
+  outline-offset: 2px !important;
+}
+
+.primary-button,
+button[class*="bg-lexos-cyan"],
+a[class*="bg-lexos-cyan"] {
+  background: linear-gradient(180deg, rgba(110,217,255,0.98), rgba(83,190,226,0.95)) !important;
+  color: var(--ink-950) !important;
+  box-shadow: 0 0 0 1px rgba(110,217,255,.25), 0 10px 24px rgba(0,0,0,.22) !important;
+}
+
+.secondary-button,
+.quiet-button,
+button[class*="border-lexos-line"],
+a[class*="border-lexos-line"] {
+  background: rgba(10, 29, 44, 0.52) !important;
+  border-color: var(--line) !important;
+  color: var(--paper) !important;
+}
+
+.status, .priority, .tag,
+span[class*="rounded-full"][class*="border"] {
+  border-radius: 999px !important;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.data-table thead,
+thead[class*="bg-lexos-navy"] {
+  background: rgba(5, 17, 29, 0.94) !important;
+}
+
+.data-table tbody tr,
+tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.data-table tbody tr:hover,
+tbody tr:hover {
+  background: rgba(110, 217, 255, 0.055) !important;
+}
+
+.premium-scrollbar {
+  scrollbar-color: rgba(110,217,255,.28) rgba(3,11,19,.36);
+  scrollbar-width: thin;
+}
+
+.premium-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
+.premium-scrollbar::-webkit-scrollbar-track { background: rgba(3,11,19,.35); }
+.premium-scrollbar::-webkit-scrollbar-thumb { background: rgba(110,217,255,.24); border: 3px solid rgba(3,11,19,.55); border-radius: 999px; }
+
+@keyframes lexos-view-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main > * {
+  animation: lexos-view-in 240ms ease both;
+}
+
+@media (max-width: 1023px) {
+  .ambient-grid { display: none; }
+  main { padding-bottom: 6rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grid-light, .grid-crosshair-x, .grid-crosshair-y { display: none; }
+}
+
+/* Rodada pós-redesign: suavização premium e escala operacional. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.premium-surface,
+.panel,
+.table-shell,
+.calm-record-card,
+.calm-priority-card,
+.calm-metric-card,
+.executive-panel-compact {
+  border-color: rgba(148, 170, 204, 0.14) !important;
+}
+
+.calm-workspace .premium-surface,
+.calm-record-card,
+.calm-priority-card,
+.calm-metric-card {
+  background: linear-gradient(180deg, rgba(17, 37, 60, 0.58), rgba(6, 18, 31, 0.5)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.028), 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.calm-record-card:hover,
+.calm-priority-card:hover,
+.calm-metric-card:hover,
+.premium-lift:hover {
+  border-color: rgba(110, 217, 255, 0.2) !important;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 14px 34px rgba(0, 0, 0, 0.14) !important;
+}
+
+.operational-list-grid-compact,
+.calm-workspace .grid {
+  min-width: 0;
+}
+
+.calm-workspace :is(p, h1, h2, h3, h4, span, a, button) {
+  overflow-wrap: anywhere;
+}
+
+.calm-workspace .calm-hero {
+  border-color: rgba(110, 217, 255, 0.12) !important;
+}
+
+@media (min-width: 1280px) {
+  .calm-record-card,
+  .calm-priority-card {
+    padding: 0.925rem;
   }
 }

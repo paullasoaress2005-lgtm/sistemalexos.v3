@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sistema LEX.OS V3",
-  description: "Central operacional jurídica LEX.OS",
-  icons: {
-    icon: "/lexos-favicon.png"
-  }
+  title: "LEX.OS Control",
+  description: "Plataforma premium de controle jurídico-operacional LEX.OS Control.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <body>{children}</body>
