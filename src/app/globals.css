@@ -1147,3 +1147,138 @@ body {
     padding: 0.925rem;
   }
 }
+
+/* LEX.OS Control v3: composição integral no padrão Cartório Control. */
+.calm-workspace {
+  max-width: 100% !important;
+}
+
+.calm-hero,
+.operational-hero-compact {
+  border-radius: 22px !important;
+  border: 1px solid rgba(43, 66, 94, 0.72) !important;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(92, 201, 213, 0.11), transparent 34rem),
+    linear-gradient(135deg, rgba(19, 41, 66, 0.82), rgba(7, 18, 33, 0.9)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 24px 64px rgba(0, 0, 0, 0.26) !important;
+  padding: 1.5rem !important;
+}
+
+.calm-hero h1,
+.calm-workspace h1 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2rem, 3.2vw, 3.15rem) !important;
+  line-height: 1.03 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.calm-workspace h2 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  letter-spacing: -0.035em !important;
+}
+
+.calm-metric-card {
+  border-radius: 14px !important;
+  border: 1px solid rgba(43, 66, 94, 0.72) !important;
+  background: linear-gradient(135deg, rgba(19, 41, 66, 0.68), rgba(9, 24, 43, 0.78)) !important;
+  padding: 1rem !important;
+}
+
+.calm-record-card,
+.calm-priority-card {
+  border-radius: 16px !important;
+  border: 1px solid rgba(43, 66, 94, 0.7) !important;
+  background: rgba(19, 41, 66, 0.26) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025), 0 12px 30px rgba(0, 0, 0, 0.13) !important;
+}
+
+.operational-stack-compact {
+  gap: 1.25rem !important;
+}
+
+.operational-metrics-grid-compact,
+.operational-list-grid-compact {
+  gap: 0.75rem !important;
+}
+
+.operational-panel-compact {
+  border-radius: 18px !important;
+}
+
+.operational-panel-compact > :first-child {
+  margin-bottom: 1rem !important;
+}
+
+.operational-control-compact {
+  min-height: 42px !important;
+  border-radius: 12px !important;
+  padding-inline: 0.9rem !important;
+}
+
+.operational-chip-compact,
+.operational-toggle-compact {
+  min-height: 32px !important;
+  padding-inline: 0.75rem !important;
+}
+
+.operational-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid rgba(43, 66, 94, 0.58);
+  padding-top: 0.85rem;
+}
+
+.operational-action {
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  padding: 0.45rem 0.7rem !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.calm-primary-action,
+.calm-secondary-action {
+  min-height: 40px !important;
+  border-radius: 12px !important;
+  padding: 0.65rem 1rem !important;
+  font-size: 0.86rem !important;
+  font-weight: 900 !important;
+}
+
+.calm-primary-action {
+  background: linear-gradient(180deg, #caa55b, #b88b39) !important;
+  border: 1px solid rgba(237, 208, 145, 0.62) !important;
+  color: #050e1b !important;
+}
+
+.calm-secondary-action {
+  background: rgba(19, 41, 66, 0.42) !important;
+  border: 1px solid rgba(43, 66, 94, 0.78) !important;
+  color: #dee5ee !important;
+}
+
+.calm-primary-action:hover,
+.calm-secondary-action:hover,
+.operational-action:hover {
+  transform: none !important;
+}
+
+@media (max-width: 767px) {
+  .calm-hero,
+  .operational-hero-compact {
+    padding: 1rem !important;
+  }
+
+  .calm-hero h1,
+  .calm-workspace h1 {
+    font-size: 2rem !important;
+  }
+
+  .operational-action-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

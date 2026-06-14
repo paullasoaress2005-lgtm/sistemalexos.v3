@@ -1,42 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AuthGate } from "./AuthGate";
 import { Sidebar } from "./Sidebar";
 import { Topbar } from "./Topbar";
 import { WorkspaceTheme } from "./WorkspaceTheme";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
-  const [gridPosition, setGridPosition] = useState({ x: "50vw", y: "22vh" });
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (media.matches) return undefined;
-
-    function handlePointerMove(event: PointerEvent) {
-      setGridPosition({ x: `${event.clientX}px`, y: `${event.clientY}px` });
-    }
-
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    return () => window.removeEventListener("pointermove", handlePointerMove);
-  }, []);
-
   return (
     <AuthGate>
       <WorkspaceTheme>
-        <div
-          aria-hidden="true"
-          className="ambient-grid"
-          style={{ "--grid-x": gridPosition.x, "--grid-y": gridPosition.y } as React.CSSProperties}
-        >
-          <div className="grid-light" />
-          <div className="grid-crosshair-x" />
-          <div className="grid-crosshair-y" />
-        </div>
+        <div className="pointer-events-none fixed inset-0 z-0 bg-[linear-gradient(rgba(92,201,213,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(92,201,213,0.04)_1px,transparent_1px)] bg-[size:64px_64px]" />
         <Sidebar />
-        <div className="relative z-10 lg:pl-[17rem]">
+        <div className="relative z-10 min-h-screen lg:pl-[232px]">
           <Topbar />
-          <main className="mx-auto max-w-[1500px] px-3 py-3 sm:px-4 lg:px-5 lg:py-5 xl:px-6">
+          <main className="mx-auto max-w-[1260px] px-4 py-6 sm:px-6 lg:px-8 lg:py-9">
             {children}
           </main>
         </div>
